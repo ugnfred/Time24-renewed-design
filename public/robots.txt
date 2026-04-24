@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://time24.co.in/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /

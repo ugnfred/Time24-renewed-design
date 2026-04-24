@@ -1,0 +1,1128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+<!-- ═══════════ PRIMARY SEO ═══════════ -->
+<title>Time24 — Current Time India, World Clock & Timezone Converter</title>
+<meta name="description" content="Exact current time in India (IST) and worldwide. Live world clock, timezone converter, stopwatch, countdown timer, alarms, tasks, calendar and developer timestamps — all free at time24.co.in."/>
+<meta name="keywords" content="current time india, IST time, world clock, timezone converter, IST to EST, IST to GMT, online clock, stopwatch, timer, sunrise time india, UTC+5:30, unix timestamp, ISO 8601, Pomodoro"/>
+<meta name="author" content="time24.co.in"/>
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+<link rel="canonical" href="https://time24.co.in/"/>
+
+<!-- Search Console verification (carried over from previous site) -->
+<meta name="google-site-verification" content="4ba2336bfd9be539"/>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://time24.co.in/"/>
+<meta property="og:title" content="Time24 — Current Time India, World Clock & Timezone Converter"/>
+<meta property="og:description" content="Exact current time in India (IST) and every timezone worldwide. Free world clock, stopwatch, timer and calendar."/>
+<meta property="og:image" content="https://time24.co.in/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:site_name" content="time24.co.in"/>
+<meta property="og:locale" content="en_IN"/>
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@time24coin"/>
+<meta name="twitter:title" content="Time24 — Current Time India & World Clock"/>
+<meta name="twitter:description" content="Exact IST time and world clock. Convert timezones, track sunrise/sunset, use stopwatch and timer."/>
+<meta name="twitter:image" content="https://time24.co.in/og-image.png"/>
+
+<!-- Geo -->
+<meta name="geo.region" content="IN"/>
+<meta name="geo.placename" content="India"/>
+<meta name="language" content="English"/>
+<meta name="theme-color" content="#070814"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Time24"/>
+<link rel="manifest" href="/manifest.json"/>
+<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png"/>
+<link rel="apple-touch-icon" href="/icons/icon-192.png"/>
+
+<!-- Structured data: WebApplication -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"WebApplication",
+  "name":"Time24","alternateName":["time24.co.in","Current Time India","IST Clock"],
+  "url":"https://time24.co.in/",
+  "description":"Free online world clock showing exact current time in India (IST) and every timezone worldwide. Features timezone converter, stopwatch, countdown timer, calendar, alarm, sunrise and sunset times.",
+  "applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":"en-IN",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},
+  "featureList":["Current Time India IST","World Clock","Timezone Converter","Online Stopwatch","Countdown Timer","Calendar","Alarm Clock","Sunrise Sunset Times","Moon Phase","Unix Timestamp"],
+  "creator":{"@type":"Organization","name":"time24.co.in","url":"https://time24.co.in"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"124","bestRating":"5"}
+}
+</script>
+
+<!-- Structured data: FAQ -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"What is the current time in India?","acceptedAnswer":{"@type":"Answer","text":"India Standard Time (IST) is UTC+5:30. time24.co.in shows the exact current IST time updated every second, along with sunrise, sunset and timezone conversion tools."}},
+    {"@type":"Question","name":"How do I convert IST to EST?","acceptedAnswer":{"@type":"Answer","text":"IST (UTC+5:30) is 10 hours and 30 minutes ahead of EST (UTC-5). Use the Converter on time24.co.in to instantly convert IST to EST, GMT, PST or any other timezone."}},
+    {"@type":"Question","name":"What timezone does India use?","acceptedAnswer":{"@type":"Answer","text":"India uses a single timezone, Indian Standard Time (IST), which is UTC+5:30. India does not observe Daylight Saving Time."}},
+    {"@type":"Question","name":"What is a Unix timestamp?","acceptedAnswer":{"@type":"Answer","text":"A Unix timestamp is the number of seconds elapsed since January 1, 1970 at 00:00:00 UTC. Time24 shows the live Unix timestamp with one-click copy for developers."}}
+  ]
+}
+</script>
+
+<!-- Performance hints -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://unpkg.com" crossorigin/>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300..700&family=JetBrains+Mono:wght@300..600&display=swap" rel="stylesheet"/>
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-38TD3MXSDR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-38TD3MXSDR', { page_title: 'Time24 — World Clock & Timezone Converter', page_location: window.location.href, send_page_view: true });
+</script>
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6716247063561440" crossorigin="anonymous"></script>
+<style>
+/* ===================================================
+   Time24 · Glass · Production
+   =================================================== */
+:root{
+  /* Deep cosmic palette */
+  --bg-0: #070814;
+  --bg-1: #0d1124;
+  --bg-2: #131733;
+  --ink: #f4f6ff;
+  --ink-2: #c6cbe6;
+  --ink-3: #8b92b8;
+  --ink-4: #5c6388;
+
+  /* Glass */
+  --glass: rgba(255,255,255,0.06);
+  --glass-2: rgba(255,255,255,0.04);
+  --glass-hi: rgba(255,255,255,0.10);
+  --stroke: rgba(255,255,255,0.10);
+  --stroke-2: rgba(255,255,255,0.18);
+
+  /* Accent — aurora green/teal IST nod + neon accent */
+  --accent: #6ef3c1;
+  --accent-2: #4ec3ff;
+  --saffron: #ffb067;
+  --rose: #ff7c9d;
+  --warn: #ffcb6b;
+  --danger: #ff6378;
+
+  --f-display: "Instrument Serif", "Fraunces", "Iowan Old Style", Georgia, serif;
+  --f-ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --r: 16px;
+  --r-sm: 10px;
+  --shadow-glass: 0 20px 60px -20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+*{ box-sizing: border-box }
+html, body{ margin:0; padding:0 }
+html{ background: var(--bg-0) }
+body{
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: var(--f-ui);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background:
+    radial-gradient(1200px 800px at 85% -10%, rgba(110,243,193,0.08), transparent 60%),
+    radial-gradient(1000px 700px at -5% 30%, rgba(78,195,255,0.09), transparent 65%),
+    radial-gradient(900px 700px at 90% 110%, rgba(255,124,157,0.06), transparent 60%),
+    linear-gradient(180deg, #070814 0%, #0a0c1c 40%, #0d1124 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+body::before{
+  content:"";
+  position: fixed; inset:0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.35), transparent 50%),
+    radial-gradient(1px 1px at 70% 15%, rgba(255,255,255,0.28), transparent 50%),
+    radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,0.22), transparent 50%),
+    radial-gradient(1px 1px at 30% 85%, rgba(255,255,255,0.2), transparent 50%),
+    radial-gradient(1px 1px at 55% 70%, rgba(255,255,255,0.3), transparent 50%),
+    radial-gradient(1px 1px at 12% 60%, rgba(255,255,255,0.25), transparent 50%);
+  background-size: 900px 900px;
+  pointer-events: none; z-index: 0; opacity: 0.6;
+}
+body::after{
+  content:"";
+  position: fixed; inset:0;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.35; mix-blend-mode: overlay; pointer-events: none; z-index: 0;
+}
+
+button{ font-family: inherit; color: inherit }
+a{ color: inherit }
+
+/* ---------------- Layout ---------------- */
+.shell{
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+  position: relative; z-index: 1;
+}
+
+/* ---------------- Sidebar ---------------- */
+.side{
+  padding: 24px 18px;
+  position: sticky; top: 0; height: 100vh;
+  display: flex; flex-direction: column; gap: 22px;
+  border-right: 1px solid var(--stroke);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0) 60%),
+    rgba(8,10,22,0.55);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  z-index: 5;
+}
+.brand{ display: flex; align-items: center; gap: 12px; padding: 4px 6px }
+.brand-mark{
+  width: 42px; height: 42px; border-radius: 12px; position: relative;
+  background:
+    radial-gradient(120% 120% at 20% 10%, rgba(255,255,255,0.4), rgba(255,255,255,0) 60%),
+    linear-gradient(135deg, #6ef3c1, #4ec3ff 60%, #a78bfa);
+  display: grid; place-items: center;
+  font-family: var(--f-display); font-weight: 500;
+  font-size: 20px; color: #0b0d1a; letter-spacing: -0.02em;
+  box-shadow: 0 8px 24px -8px rgba(110,243,193,0.6), inset 0 1px 0 rgba(255,255,255,0.4);
+}
+.brand-name{
+  font-family: var(--f-display); font-weight: 400;
+  font-size: 24px; letter-spacing: -0.01em; line-height: 1;
+}
+.brand-name em{ font-style: italic; color: var(--accent); font-weight: 400 }
+.brand-sub{
+  font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-4);
+  margin-top: 4px; font-family: var(--f-mono);
+}
+
+.nav{ display: flex; flex-direction: column; gap: 2px; margin-top: 4px }
+.nav-label{
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-4); margin: 14px 12px 8px; font-family: var(--f-mono);
+}
+.nav-item{
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 14px; border-radius: 12px;
+  border: 1px solid transparent;
+  background: transparent; cursor: pointer;
+  text-align: left; width: 100%;
+  color: var(--ink-2);
+  transition: background .18s, border-color .18s, color .18s, transform .18s;
+  font-size: 14px; font-weight: 500;
+}
+.nav-item:hover{
+  background: var(--glass);
+  color: var(--ink);
+  border-color: var(--stroke);
+}
+.nav-item[aria-current="true"]{
+  background: linear-gradient(135deg, rgba(110,243,193,0.14), rgba(78,195,255,0.08));
+  color: var(--ink);
+  border-color: rgba(110,243,193,0.25);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.nav-item .nk{
+  margin-left: auto;
+  font-family: var(--f-mono); font-size: 11px;
+  padding: 2px 7px; border-radius: 5px;
+  border: 1px solid var(--stroke-2);
+  color: var(--ink-3);
+  background: rgba(255,255,255,0.03);
+}
+.nav-item svg{ width: 18px; height: 18px; flex-shrink: 0; opacity: 0.9 }
+
+.side-foot{ margin-top: auto; display: flex; flex-direction: column; gap: 10px }
+.pill{
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 12px; border-radius: 999px;
+  border: 1px solid var(--stroke);
+  background: var(--glass);
+  backdrop-filter: blur(8px);
+  font-family: var(--f-mono); font-size: 11.5px;
+  width: fit-content; color: var(--ink-2);
+}
+.dot{
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent), 0 0 0 3px rgba(110,243,193,0.18);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+@keyframes pulse{ 0%,100%{ opacity: 1 } 50%{ opacity: 0.5 } }
+
+.side-note{ font-size: 11.5px; color: var(--ink-4); line-height: 1.55; padding: 0 4px }
+
+/* ---------------- Main ---------------- */
+.main{ min-width: 0 }
+.topbar{
+  position: sticky; top: 0; z-index: 4;
+  display: flex; align-items: center; gap: 18px;
+  padding: 16px 36px;
+  border-bottom: 1px solid var(--stroke);
+  background: rgba(8,10,22,0.6);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+.crumbs{
+  font-family: var(--f-mono); font-size: 11.5px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-4);
+}
+.crumbs b{ color: var(--ink); font-weight: 500 }
+.topbar-spacer{ flex: 1 }
+.top-actions{ display: flex; align-items: center; gap: 10px }
+
+.view{ padding: 40px 36px 80px; max-width: 1440px; margin: 0 auto }
+
+/* ---------------- Typography ---------------- */
+.h-display{
+  font-family: var(--f-display); font-weight: 400;
+  letter-spacing: -0.025em; line-height: 0.98; color: var(--ink);
+}
+.h-eyebrow{
+  font-family: var(--f-mono);
+  font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-3);
+}
+.h-section{
+  font-family: var(--f-display); font-weight: 400;
+  font-size: 32px; letter-spacing: -0.02em; line-height: 1.05;
+}
+.mono{ font-family: var(--f-mono); font-variant-numeric: tabular-nums }
+
+/* ---------------- Glass card ---------------- */
+.glass{
+  background: var(--glass);
+  border: 1px solid var(--stroke);
+  border-radius: var(--r);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: var(--shadow-glass);
+  position: relative;
+  overflow: hidden;
+}
+.glass::before{
+  content:""; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0) 40%);
+  pointer-events: none; border-radius: inherit;
+}
+
+/* ---------------- Clock hero ---------------- */
+.clock-hero{
+  display: grid;
+  grid-template-columns: 1.1fr 1.2fr;
+  gap: 24px;
+  align-items: stretch;
+}
+.hero-card{ padding: 32px; display: flex; flex-direction: column }
+.hero-top{
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 10px;
+}
+.hero-locale{
+  font-family: var(--f-mono); font-size: 11.5px; letter-spacing: 0.12em;
+  color: var(--ink-3); text-transform: uppercase;
+}
+.hero-date{
+  font-family: var(--f-mono); font-size: 11.5px; letter-spacing: 0.12em;
+  color: var(--ink-3); text-transform: uppercase;
+}
+.big-time{
+  font-family: var(--f-display); font-weight: 300;
+  font-size: clamp(56px, 7.5vw, 120px);
+  letter-spacing: -0.045em; line-height: 0.95;
+  color: var(--ink);
+  display: flex; align-items: baseline; justify-content: flex-start; gap: 2px;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(180deg, #fff 10%, #c6cbe6 90%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  margin-top: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.big-time .sec{
+  font-size: 0.4em; color: var(--accent); letter-spacing: -0.02em; font-weight: 300;
+  -webkit-text-fill-color: var(--accent);
+  text-shadow: 0 0 20px rgba(110,243,193,0.35);
+}
+.big-time .ap{
+  font-size: 0.2em; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-3); margin-left: 10px;
+  font-family: var(--f-ui); font-weight: 500;
+  -webkit-text-fill-color: var(--ink-3);
+}
+.big-caption{
+  margin-top: 18px;
+  font-family: var(--f-display); font-style: italic;
+  font-size: 22px; color: var(--ink-2); letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.big-caption .accent{ color: var(--accent) }
+
+.stat-strip{
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 14px; margin-top: 28px;
+}
+.stat{
+  padding: 18px;
+  border-radius: 14px;
+  background: var(--glass-2);
+  border: 1px solid var(--stroke);
+}
+.stat .k{
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ink-4);
+}
+.stat .v{
+  font-family: var(--f-display); font-size: 30px; letter-spacing: -0.02em;
+  line-height: 1; color: var(--ink); margin-top: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.stat .s{ font-size: 11.5px; color: var(--ink-3); margin-top: 4px; font-family: var(--f-mono) }
+.progress{
+  height: 4px; border-radius: 2px; background: rgba(255,255,255,0.06);
+  overflow: hidden; margin-top: 10px;
+}
+.progress > i{
+  display: block; height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 12px rgba(110,243,193,0.5);
+}
+
+/* Map card */
+.map-card{
+  padding: 24px;
+  min-height: 520px;
+  display: flex; flex-direction: column;
+  background:
+    radial-gradient(80% 60% at 60% 30%, rgba(78,195,255,0.10), transparent 60%),
+    var(--glass);
+}
+.map-head{
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 14px;
+}
+.map-head h3{
+  margin: 0; font-family: var(--f-display); font-weight: 400;
+  font-size: 22px; letter-spacing: -0.015em; color: var(--ink);
+}
+.map-legend{
+  display: flex; gap: 14px;
+  font-family: var(--f-mono); font-size: 10.5px;
+  color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase;
+}
+.map-legend span{ display: inline-flex; align-items: center; gap: 6px }
+.map-legend i{ width: 8px; height: 8px; border-radius: 50%; display: inline-block }
+.map-legend .day{ background: var(--warn); box-shadow: 0 0 8px var(--warn) }
+.map-legend .night{ background: #6d88b8 }
+.map-svg{ width: 100%; flex: 1; min-height: 380px }
+.map-foot{
+  font-family: var(--f-mono); font-size: 10.5px;
+  color: var(--ink-4); margin-top: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+/* ---------------- Cities ---------------- */
+.city-rail{
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px;
+}
+.city-col{ padding: 10px }
+.city-col-head{
+  padding: 6px 12px 10px;
+  display: flex; justify-content: space-between; align-items: baseline;
+}
+.city-row{
+  display: grid;
+  grid-template-columns: 28px 1fr auto auto;
+  align-items: center; gap: 14px;
+  padding: 13px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background .18s, border-color .18s;
+}
+.city-row:hover{ background: var(--glass); border-color: var(--stroke) }
+.city-row.active{
+  background: linear-gradient(135deg, rgba(110,243,193,0.10), rgba(78,195,255,0.06));
+  border-color: rgba(110,243,193,0.25);
+}
+.city-row .flag{
+  width: 28px; height: 20px; border-radius: 4px;
+  display: grid; place-items: center;
+  font-family: var(--f-mono); font-size: 10px; color: var(--ink-2);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--stroke);
+  letter-spacing: 0.05em;
+}
+.city-row .name{
+  font-family: var(--f-display); font-weight: 400; font-size: 19px;
+  letter-spacing: -0.01em; color: var(--ink);
+}
+.city-row .sub{
+  font-family: var(--f-mono); font-size: 10.5px; color: var(--ink-4);
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.city-row .time{
+  font-family: var(--f-mono); font-size: 15px;
+  font-variant-numeric: tabular-nums; color: var(--ink);
+}
+.city-row .badge{
+  font-family: var(--f-mono); font-size: 9.5px;
+  padding: 3px 7px; border-radius: 5px;
+  background: rgba(255,255,255,0.05); color: var(--ink-3);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border: 1px solid var(--stroke);
+}
+.city-row .badge.day{ color: var(--warn); border-color: rgba(255,203,107,0.3); background: rgba(255,203,107,0.06) }
+
+/* ---------------- Sun / moon / formats strip ---------------- */
+.sunbelt{ margin-top: 28px; overflow: hidden }
+.sunbelt-head{
+  padding: 20px 28px 18px;
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-bottom: 1px solid var(--stroke);
+}
+.sunbelt-grid{
+  display: grid; grid-template-columns: 1.2fr 1fr 1fr;
+}
+.sunbelt-grid > div{
+  padding: 24px 28px;
+  border-right: 1px solid var(--stroke);
+}
+.sunbelt-grid > div:last-child{ border-right: none }
+
+.sun-arc{ position: relative; height: 130px; margin-top: 12px }
+.sun-arc svg{ width: 100%; height: 100% }
+.daylight{ display: flex; gap: 14px; align-items: baseline; margin-top: 10px }
+.daylight .v{
+  font-family: var(--f-display); font-weight: 300;
+  font-size: 34px; line-height: 1;
+  font-variant-numeric: tabular-nums; letter-spacing: -0.02em;
+  background: linear-gradient(180deg, var(--warn), var(--saffron));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.daylight .s{ font-size: 12px; color: var(--ink-3); font-family: var(--f-mono) }
+
+.moon-wrap{ display: flex; gap: 20px; align-items: center }
+.moon{
+  width: 90px; height: 90px; border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, #fff8e2, #d4cba4 60%, #948a66 100%);
+  position: relative; overflow: hidden;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.1),
+    0 0 40px rgba(255,230,150,0.15),
+    0 8px 24px -8px rgba(0,0,0,0.6);
+}
+.moon::after{
+  content: ""; position: absolute; inset: 0;
+  background: #070814; border-radius: 50%;
+  transform: translateX(var(--moon-x, 0));
+}
+
+/* Formats */
+.formats{
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+}
+.format{
+  padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.format .k{
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.16em;
+  color: var(--ink-4); text-transform: uppercase;
+}
+.format .v{
+  font-family: var(--f-mono); font-size: 16px; color: var(--ink);
+  font-variant-numeric: tabular-nums; word-break: break-all;
+}
+.format button.copy{
+  align-self: flex-start;
+  background: var(--glass); border: 1px solid var(--stroke-2);
+  color: var(--ink-2);
+  border-radius: 999px; padding: 5px 12px;
+  font-family: var(--f-mono); font-size: 11px; cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.format button.copy:hover{ background: var(--glass-hi); color: var(--ink) }
+
+/* ---------------- Editorial / Guides ---------------- */
+.editorial{ margin-top: 72px; padding-top: 48px; border-top: 1px solid var(--stroke) }
+.editorial-head{
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 32px;
+}
+.editorial-head h2{
+  font-family: var(--f-display); font-weight: 400;
+  font-size: clamp(34px, 4vw, 54px);
+  letter-spacing: -0.03em; line-height: 1.0;
+  margin: 6px 0 0; max-width: 18ch;
+}
+.editorial-head h2 em{ font-style: italic; color: var(--accent) }
+
+.article-grid{
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.article{
+  padding: 22px;
+  cursor: pointer;
+  transition: transform .25s, border-color .25s;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.article:hover{ transform: translateY(-3px); border-color: var(--stroke-2) }
+.article .num{
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.2em;
+  color: var(--ink-4); text-transform: uppercase;
+}
+.article h3{
+  margin: 0; font-family: var(--f-display); font-weight: 400;
+  font-size: 24px; letter-spacing: -0.015em; line-height: 1.15; color: var(--ink);
+}
+.article p{ color: var(--ink-3); font-size: 14px; line-height: 1.55; margin: 0 }
+.article .read{
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent);
+  margin-top: 4px;
+}
+.article-pin{
+  grid-column: 1 / -1;
+  display: grid; grid-template-columns: 1.4fr 1fr;
+  gap: 0; align-items: stretch; padding: 0;
+  margin-bottom: 4px;
+}
+.article-pin .img{
+  position: relative; min-height: 320px;
+  background:
+    radial-gradient(120% 120% at 70% 20%, rgba(110,243,193,0.18), transparent 60%),
+    radial-gradient(100% 100% at 20% 80%, rgba(78,195,255,0.14), transparent 60%),
+    linear-gradient(135deg, #1a1f3c, #0d1024);
+  overflow: hidden;
+}
+.article-pin .img::before{
+  content:""; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 14px);
+}
+.article-pin .img::after{
+  content: "FEATURE · IST";
+  position: absolute; bottom: 16px; left: 16px;
+  font-family: var(--f-mono); font-size: 10.5px; letter-spacing: 0.18em;
+  color: var(--ink); background: rgba(0,0,0,0.35); padding: 5px 10px; border-radius: 5px;
+  border: 1px solid var(--stroke-2); backdrop-filter: blur(6px);
+}
+.article-pin .txt{
+  padding: 40px;
+  display: flex; flex-direction: column; gap: 14px; justify-content: center;
+  border-left: 1px solid var(--stroke);
+}
+.article-pin h2{
+  margin: 0; font-family: var(--f-display); font-weight: 400;
+  font-size: 40px; line-height: 1.02; letter-spacing: -0.025em; color: var(--ink);
+}
+.article-pin h2 em{ font-style: italic; color: var(--accent) }
+.article-pin p{ color: var(--ink-2); font-size: 15px; line-height: 1.6; margin: 0 }
+.article-pin .byline{
+  font-family: var(--f-mono); font-size: 10.5px; color: var(--ink-4);
+  letter-spacing: 0.16em; text-transform: uppercase;
+}
+
+/* Longform */
+.longform{
+  max-width: 720px; margin: 56px auto 0;
+  padding-top: 40px; border-top: 1px solid var(--stroke);
+}
+.longform h2{
+  font-family: var(--f-display); font-weight: 400;
+  font-size: 46px; letter-spacing: -0.025em; line-height: 1.05;
+  color: var(--ink);
+}
+.longform h3{
+  font-family: var(--f-display); font-weight: 400;
+  font-size: 26px; letter-spacing: -0.015em;
+  margin: 40px 0 10px; color: var(--ink);
+}
+.longform p{
+  font-family: var(--f-display); font-weight: 300;
+  font-size: 18px; line-height: 1.65; color: var(--ink-2);
+}
+.longform p.lead{ font-size: 22px; line-height: 1.5; color: var(--ink) }
+.longform p.lead::first-letter{
+  font-size: 3.2em; line-height: 0.85; float: left;
+  padding: 6px 10px 0 0; font-weight: 400; color: var(--accent);
+}
+.longform blockquote{
+  margin: 28px 0; padding: 4px 0 4px 24px;
+  border-left: 2px solid var(--accent);
+  font-family: var(--f-display); font-style: italic;
+  font-size: 22px; color: var(--ink); line-height: 1.4;
+}
+.ad-slot{
+  margin: 40px 0; padding: 28px;
+  border: 1px dashed var(--stroke-2); border-radius: 12px;
+  display: flex; justify-content: center; align-items: center;
+  flex-direction: column; gap: 6px;
+  color: var(--ink-4);
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.015);
+}
+.ad-slot .lbl{ color: var(--accent) }
+
+/* ---------------- Tool panels ---------------- */
+.panel{ padding: 36px }
+.panel-hero{
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 44px; align-items: start;
+}
+.section-intro{ margin-bottom: 32px }
+.section-intro h1{
+  font-family: var(--f-display); font-weight: 400;
+  font-size: clamp(44px, 6vw, 72px);
+  letter-spacing: -0.035em; line-height: 0.95;
+  margin: 4px 0 14px; color: var(--ink);
+}
+.section-intro h1 em{ font-style: italic; color: var(--accent) }
+.section-intro p{
+  max-width: 62ch; color: var(--ink-3); font-size: 16px; line-height: 1.55; margin: 0;
+}
+
+.giant-timer{
+  font-family: var(--f-display); font-weight: 300;
+  font-size: clamp(80px, 14vw, 180px);
+  letter-spacing: -0.05em; line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(180deg, #fff, #8b92b8);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.giant-timer .ms{ font-size: 0.35em; -webkit-text-fill-color: var(--accent); color: var(--accent) }
+
+/* Buttons */
+.btn{
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 999px;
+  border: 1px solid var(--stroke-2);
+  background: var(--glass);
+  color: var(--ink);
+  backdrop-filter: blur(10px);
+  font-family: var(--f-ui); font-weight: 500; font-size: 14px;
+  cursor: pointer; transition: background .15s, border-color .15s, transform .1s;
+}
+.btn:hover{ background: var(--glass-hi); border-color: var(--stroke-2) }
+.btn:active{ transform: translateY(1px) }
+.btn.accent{
+  background: linear-gradient(135deg, #6ef3c1, #4ec3ff);
+  border-color: transparent; color: #0a0c1c; font-weight: 600;
+  box-shadow: 0 10px 30px -8px rgba(110,243,193,0.5);
+}
+.btn.accent:hover{ filter: brightness(1.08) }
+.btn.danger{ color: var(--danger); border-color: rgba(255,99,120,0.4); background: rgba(255,99,120,0.08) }
+.btn.sm{ padding: 7px 13px; font-size: 12px }
+.btn.ghost{ background: transparent }
+
+.chips{ display: flex; gap: 8px; flex-wrap: wrap }
+.chip{
+  padding: 8px 14px; border-radius: 999px;
+  border: 1px solid var(--stroke);
+  background: var(--glass-2);
+  color: var(--ink-2);
+  font-family: var(--f-mono); font-size: 12px;
+  cursor: pointer; transition: background .15s, color .15s, border-color .15s;
+}
+.chip:hover{ background: var(--glass); color: var(--ink) }
+.chip.active{
+  background: linear-gradient(135deg, #6ef3c1, #4ec3ff);
+  color: #0a0c1c; border-color: transparent; font-weight: 600;
+}
+
+/* Lap list */
+.lap-list{
+  margin-top: 24px;
+  border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--stroke);
+}
+.lap-row{
+  display: grid; grid-template-columns: 70px 1fr 1fr;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--stroke);
+  font-family: var(--f-mono); font-size: 13px;
+  align-items: center;
+}
+.lap-row:last-child{ border-bottom: none }
+.lap-row .idx{ color: var(--ink-4) }
+.lap-row .lap{ color: var(--ink-2) }
+.lap-row .total{ color: var(--ink); text-align: right }
+.lap-row.best{ background: rgba(110,243,193,0.08) }
+.lap-row.worst{ background: rgba(255,99,120,0.06) }
+
+/* Ring */
+.ring-wrap{ position: relative; width: 300px; height: 300px; margin: 0 auto }
+.ring-wrap svg{ width: 100%; height: 100% }
+.ring-center{
+  position: absolute; inset: 0; display: grid; place-items: center; text-align: center;
+}
+.ring-center .t{
+  font-family: var(--f-display); font-weight: 300;
+  font-size: 60px; letter-spacing: -0.03em; line-height: 1;
+  font-variant-numeric: tabular-nums; color: var(--ink);
+}
+.ring-center .l{
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.18em;
+  color: var(--ink-3); text-transform: uppercase; margin-top: 6px;
+}
+
+/* Tasks */
+.task{
+  display: grid; grid-template-columns: 28px 1fr auto auto;
+  align-items: center; gap: 14px;
+  padding: 15px 18px;
+  border-bottom: 1px solid var(--stroke);
+}
+.task:last-child{ border-bottom: none }
+.task.done .title{ color: var(--ink-4); text-decoration: line-through }
+.check{
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 1.5px solid var(--stroke-2); background: transparent;
+  cursor: pointer; display: grid; place-items: center; padding: 0;
+  color: #0a0c1c;
+}
+.check.on{
+  background: var(--accent); border-color: var(--accent);
+  box-shadow: 0 0 14px rgba(110,243,193,0.4);
+}
+.task .title{
+  font-family: var(--f-display); font-size: 19px; letter-spacing: -0.01em; color: var(--ink);
+}
+.task .cat{
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-3);
+  padding: 4px 9px; border-radius: 999px;
+  border: 1px solid var(--stroke-2); background: var(--glass-2);
+}
+.task .when{
+  font-family: var(--f-mono); font-size: 12px; color: var(--ink-3);
+}
+.add-task{
+  display: flex; gap: 10px; padding: 18px;
+  border-bottom: 1px solid var(--stroke);
+}
+.add-task input, .add-task select{
+  padding: 12px 14px; border-radius: 10px;
+  border: 1px solid var(--stroke);
+  background: var(--glass-2);
+  font-family: var(--f-display); font-size: 17px; letter-spacing: -0.005em;
+  color: var(--ink); outline: none;
+}
+.add-task input{ flex: 1 }
+.add-task select{ font-family: var(--f-mono); font-size: 12px }
+.add-task input:focus{ border-color: var(--accent) }
+
+/* Calendar */
+.cal-head{
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 22px;
+}
+.cal-head h2{
+  font-family: var(--f-display); font-weight: 400;
+  font-size: 56px; letter-spacing: -0.03em; margin: 0; color: var(--ink);
+}
+.cal-head h2 em{ font-style: italic; color: var(--accent); font-weight: 300 }
+.cal-grid{
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--stroke);
+  background: var(--glass);
+}
+.cal-dow{
+  padding: 11px 14px;
+  border-right: 1px solid var(--stroke);
+  border-bottom: 1px solid var(--stroke);
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.16em;
+  color: var(--ink-4); text-transform: uppercase;
+  background: rgba(0,0,0,0.2);
+}
+.cal-cell{
+  min-height: 100px;
+  border-right: 1px solid var(--stroke);
+  border-bottom: 1px solid var(--stroke);
+  padding: 10px 12px;
+  display: flex; flex-direction: column; gap: 4px;
+  cursor: pointer; transition: background .15s;
+  background: transparent;
+}
+.cal-cell:hover{ background: var(--glass) }
+.cal-cell.out{ color: var(--ink-4); opacity: 0.55 }
+.cal-cell .d{
+  font-family: var(--f-display); font-size: 20px; letter-spacing: -0.01em; line-height: 1;
+  color: var(--ink);
+}
+.cal-cell.today .d{
+  display: inline-grid; place-items: center;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--accent); color: #0a0c1c; font-size: 16px;
+}
+.cal-cell .evt{
+  font-size: 11px; padding: 3px 7px; border-radius: 5px;
+  background: rgba(110,243,193,0.12); color: var(--accent);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: var(--f-ui); font-weight: 500;
+  border: 1px solid rgba(110,243,193,0.2);
+}
+.cal-cell .evt.b{ background: rgba(255,176,103,0.12); color: var(--saffron); border-color: rgba(255,176,103,0.22) }
+.cal-cell .evt.r{ background: rgba(255,99,120,0.12); color: var(--rose); border-color: rgba(255,99,120,0.22) }
+
+/* Converter */
+.conv-zones{ display: flex; flex-direction: column; gap: 10px; margin-top: 14px }
+.zone{
+  display: grid; grid-template-columns: 1.1fr 2fr auto;
+  gap: 18px; align-items: center;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: var(--glass-2);
+  border: 1px solid var(--stroke);
+}
+.zone .name{
+  font-family: var(--f-display); font-size: 20px; letter-spacing: -0.01em; color: var(--ink);
+}
+.zone .sub{
+  font-family: var(--f-mono); font-size: 10.5px; color: var(--ink-4);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.zone .hours{
+  display: flex; gap: 2px; height: 32px;
+  border-radius: 6px; overflow: hidden;
+  border: 1px solid var(--stroke);
+}
+.zone .hour{ flex: 1; background: rgba(255,255,255,0.02) }
+.zone .hour.work{ background: rgba(110,243,193,0.22) }
+.zone .hour.sleep{ background: rgba(78,90,140,0.22) }
+.zone .hour.now{
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  position: relative;
+}
+.zone .hour.now::after{
+  content: ""; position: absolute; top: -5px; left: 50%; transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 5px solid transparent; border-right: 5px solid transparent;
+  border-top: 5px solid var(--accent);
+}
+.zone .t{
+  font-family: var(--f-mono); font-size: 17px;
+  font-variant-numeric: tabular-nums; min-width: 88px; text-align: right; color: var(--ink);
+}
+.slider-row{
+  display: flex; align-items: center; gap: 18px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: var(--glass-2);
+  border: 1px solid var(--stroke);
+}
+input[type="range"]{
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 6px; border-radius: 3px;
+  background: rgba(255,255,255,0.1);
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance: none; appearance: none;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: 3px solid #0a0c1c;
+  box-shadow: 0 0 16px rgba(110,243,193,0.5);
+}
+
+/* Alarm */
+.alarm-row{
+  display: grid; grid-template-columns: auto 1fr auto auto;
+  align-items: center; gap: 20px;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--stroke);
+}
+.alarm-row:last-child{ border-bottom: none }
+.alarm-row .t{
+  font-family: var(--f-display); font-weight: 300;
+  font-size: 46px; letter-spacing: -0.02em; line-height: 1;
+  font-variant-numeric: tabular-nums; color: var(--ink);
+}
+.alarm-row.off .t{ color: var(--ink-4) }
+.alarm-row .lbl{ font-family: var(--f-display); font-size: 18px; color: var(--ink) }
+.alarm-row .rep{ display: flex; gap: 4px; margin-top: 6px }
+.alarm-row .rep span{
+  width: 22px; height: 22px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--f-mono); font-size: 10px;
+  background: rgba(255,255,255,0.04); color: var(--ink-4);
+  cursor: pointer;
+}
+.alarm-row .rep span.on{ background: var(--accent); color: #0a0c1c }
+.switch{
+  width: 44px; height: 25px; border-radius: 999px;
+  background: rgba(255,255,255,0.1);
+  position: relative; cursor: pointer;
+  border: none; padding: 0;
+}
+.switch::after{
+  content: ""; position: absolute; top: 3px; left: 3px;
+  width: 19px; height: 19px; border-radius: 50%;
+  background: #fff; transition: left .2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+.switch.on{ background: var(--accent); box-shadow: 0 0 12px rgba(110,243,193,0.4) }
+.switch.on::after{ left: 22px }
+
+/* Footer */
+.foot{
+  margin-top: 80px; padding-top: 44px;
+  border-top: 1px solid var(--stroke);
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 44px;
+}
+.foot h4{
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-4);
+  margin: 0 0 14px;
+}
+.foot ul{ list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px }
+.foot a{ color: var(--ink-2); text-decoration: none; font-size: 14px; cursor: pointer }
+.foot a:hover{ color: var(--accent) }
+.foot .lead{
+  font-family: var(--f-display); font-weight: 300;
+  font-size: 22px; letter-spacing: -0.015em; line-height: 1.25;
+  color: var(--ink-2); max-width: 32ch;
+}
+.foot-base{
+  margin-top: 40px; padding: 20px 0;
+  border-top: 1px solid var(--stroke);
+  display: flex; justify-content: space-between;
+  font-family: var(--f-mono); font-size: 11px;
+  color: var(--ink-4); letter-spacing: 0.12em; text-transform: uppercase;
+}
+
+/* Kbd tip */
+.kbd-tip{
+  position: fixed; bottom: 20px; right: 20px;
+  padding: 10px 14px; border-radius: 10px;
+  background: rgba(13,17,36,0.85);
+  backdrop-filter: blur(12px);
+  color: var(--ink-2);
+  font-family: var(--f-mono); font-size: 11px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  z-index: 50;
+  border: 1px solid var(--stroke);
+  box-shadow: 0 20px 60px -20px rgba(0,0,0,0.6);
+  display: flex; gap: 14px; align-items: center;
+}
+.kbd-tip kbd{
+  background: rgba(255,255,255,0.08);
+  padding: 2px 7px; border-radius: 5px;
+  border: 1px solid var(--stroke-2);
+  margin-right: 5px;
+}
+
+/* Blink */
+@keyframes tick{ 0%,100%{ opacity: 1 } 50%{ opacity: 0.35 } }
+.blink{ animation: tick 1s infinite }
+
+/* Loading */
+.skeleton{
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+@keyframes shimmer{ 0%{ background-position: 200% 0 } 100%{ background-position: -200% 0 } }
+
+/* Responsive */
+@media (max-width: 1100px){
+  .clock-hero{ grid-template-columns: 1fr; gap: 20px }
+  .panel-hero{ grid-template-columns: 1fr }
+  .formats{ grid-template-columns: 1fr }
+  .foot{ grid-template-columns: 1fr 1fr }
+  .article-grid{ grid-template-columns: 1fr 1fr }
+  .article-pin{ grid-template-columns: 1fr }
+  .article-pin .txt{ border-left: none; border-top: 1px solid var(--stroke) }
+  .sunbelt-grid{ grid-template-columns: 1fr }
+  .sunbelt-grid > div{ border-right: none; border-bottom: 1px solid var(--stroke) }
+  .stat-strip{ grid-template-columns: 1fr 1fr }
+  .city-rail{ grid-template-columns: 1fr }
+}
+@media (max-width: 720px){
+  .shell{ grid-template-columns: 1fr }
+  .side{ position: static; height: auto; border-right: none; border-bottom: 1px solid var(--stroke) }
+  .view{ padding: 24px 20px 60px }
+  .topbar{ padding: 14px 20px }
+  .article-grid{ grid-template-columns: 1fr }
+  .foot{ grid-template-columns: 1fr }
+  .big-time{ font-size: 80px }
+}
+
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<template id="__bundler_thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="70%">
+      <stop offset="0" stop-color="#162044"/>
+      <stop offset="0.6" stop-color="#0a1230"/>
+      <stop offset="1" stop-color="#03050f"/>
+    </radialGradient>
+    <linearGradient id="stroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7cf0c4"/>
+      <stop offset="1" stop-color="#6fb9ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <g transform="translate(200 200)" fill="none" stroke="url(#stroke)" stroke-width="3" stroke-linecap="round">
+    <circle r="120" stroke-opacity="0.9"/>
+    <ellipse rx="120" ry="50" stroke-opacity="0.6"/>
+    <ellipse rx="60" ry="120" stroke-opacity="0.6"/>
+    <line x1="-120" y1="0" x2="120" y2="0" stroke-opacity="0.4"/>
+  </g>
+  <g transform="translate(200 200)" fill="#ffcb6b">
+    <circle cx="60" cy="-40" r="8"/>
+    <circle cx="-70" cy="30" r="8" fill="#6ef3c1"/>
+  </g>
+  <text x="200" y="360" text-anchor="middle" font-family="Georgia, serif" font-size="32" fill="#fff" font-style="italic">Time<tspan font-style="normal" fill="#6ef3c1">24</tspan></text>
+</svg>
+</template>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+
+<script type="text/babel" src="src/util.jsx"></script>
+<script type="text/babel" src="src/icons.jsx"></script>
+<script type="text/babel" src="src/worldmap.jsx"></script>
+<script type="text/babel" src="src/clock.jsx"></script>
+<script type="text/babel" src="src/stopwatch.jsx"></script>
+<script type="text/babel" src="src/timer.jsx"></script>
+<script type="text/babel" src="src/tasks.jsx"></script>
+<script type="text/babel" src="src/calendar.jsx"></script>
+<script type="text/babel" src="src/converter.jsx"></script>
+<script type="text/babel" src="src/alarm.jsx"></script>
+<script type="text/babel" src="src/developer.jsx"></script>
+<script type="text/babel" src="src/guides.jsx"></script>
+<script type="text/babel" src="src/app.jsx"></script>
+</body>
+</html>
