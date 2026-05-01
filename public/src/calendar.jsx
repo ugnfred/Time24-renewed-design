@@ -57,13 +57,24 @@ function Calendar(){
               <div key={i} className={"cal-cell"+(c.out?" out":"")+(isToday?" today":"")}
                 onClick={()=>{
                   if(c.out) return;
-                  const title = prompt("Event title for "+ds+"?");
-                  if(title) setEvents([...events, { id:Date.now(), date:ds, title }]);
+                  const title = prompt("Event title for "+ds+"?\n(Tip: prefix with ! for red, * for orange)");
+                  if(!title) return;
+                  let color = "";
+                  let t = title.trim();
+                  if(t.startsWith("!")){ color="r"; t=t.slice(1).trim(); }
+                  else if(t.startsWith("*")){ color="b"; t=t.slice(1).trim(); }
+                  setEvents([...events, { id:Date.now(), date:ds, title:t, color }]);
                 }}>
                 <div className="d">{c.d}</div>
                 {evs.slice(0,3).map(e=>(
-                  <div key={e.id} className={"evt "+(e.color||"")}>{e.title}</div>
+                  <div key={e.id} className={"evt "+(e.color||"")}
+                    onClick={(ev)=>{
+                      ev.stopPropagation();
+                      if(confirm("Delete \""+e.title+"\"?")) setEvents(events.filter(x=>x.id!==e.id));
+                    }}
+                    title="Click to delete">{e.title}</div>
                 ))}
+                {evs.length>3 && <div style={{fontSize:"10px", color:"var(--ink-4)", fontFamily:"var(--f-mono)"}}>+{evs.length-3} more</div>}
               </div>
             );
           })}

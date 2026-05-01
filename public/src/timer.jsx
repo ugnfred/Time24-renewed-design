@@ -9,7 +9,7 @@ function Timer(){
     if(!running) return;
     const id = setInterval(()=>{
       setLeft(l => {
-        if(l<=1){ setRunning(false); try{ new Audio("data:audio/wav;base64,").play().catch(()=>{}) }catch(e){}; return 0 }
+        if(l<=1){ setRunning(false); playChime(); try{ if("Notification" in window && Notification.permission==="granted") new Notification("Time24 · Timer done", { body: label }); }catch(e){} return 0 }
         return l-1;
       });
     },1000);

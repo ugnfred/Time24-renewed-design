@@ -4,6 +4,18 @@ function WorldMap({ cities=CITIES, nowMs, activeId, onSelect }){
   const [topo, setTopo] = React.useState(null);
   const [err, setErr] = React.useState(false);
   const [hovered, setHovered] = React.useState(null);
+  const [theme, setTheme] = React.useState(()=>document.documentElement.getAttribute("data-theme")||"dark");
+
+  // Track theme changes
+  React.useEffect(()=>{
+    const obs = new MutationObserver(()=>{
+      setTheme(document.documentElement.getAttribute("data-theme")||"dark");
+    });
+    obs.observe(document.documentElement, { attributes: true, attributeFilter:["data-theme"] });
+    return ()=>obs.disconnect();
+  },[]);
+
+  const isLight = theme === "light";
 
   React.useEffect(()=>{
     let cancelled = false;
@@ -82,30 +94,92 @@ function WorldMap({ cities=CITIES, nowMs, activeId, onSelect }){
     return arr;
   },[]);
 
+  // ── Theme-aware palette ──────────────────────────────
+  const P = isLight ? {
+    ocean1: "#c8dff5",
+    ocean2: "#a8c8e8",
+    ocean3: "#7aaedc",
+    landFill1: "#d6e8c4",
+    landFill2: "#b8d4a0",
+    coastStroke1: "#4a8a5a",
+    coastStroke2: "#3a7a9a",
+    landHaloStroke: "#4a9a6a",
+    graticule: "rgba(30,80,120,0.08)",
+    equator: "rgba(30,140,90,0.30)",
+    nightFill: "rgba(100,130,180,0.28)",
+    nightFill2: "rgba(80,100,160,0.12)",
+    vignette: "rgba(120,160,200,0.25)",
+    starOpacity: 0,
+    dotDayOuter: "#f5a020",
+    dotDayInner: "#fff3c4",
+    dotNightOuter: "#1f9d6a",
+    dotNightInner: "#d9fff0",
+    ringDay: "#e08010",
+    ringNight: "#1f9d6a",
+    labelBg: "rgba(255,255,255,0.92)",
+    labelStroke: "rgba(30,60,30,0.25)",
+    labelActiveStroke: "#1f9d6a",
+    labelText: "#1a2e1a",
+    labelDayText: "#7a4800",
+    labelNightText: "#0a5a3a",
+    tooltipBg: "rgba(240,248,242,0.97)",
+    tooltipStroke: "rgba(31,157,106,0.5)",
+    sunHaloColor: "#ffcb6b",
+    sunCoreColor: "#ffb067",
+    sunCenterColor: "#fff3c4",
+  } : {
+    ocean1: "#162044",
+    ocean2: "#0a1230",
+    ocean3: "#03050f",
+    landFill1: "#1a3a4e",
+    landFill2: "#0f2435",
+    coastStroke1: "#7cf0c4",
+    coastStroke2: "#6fb9ff",
+    landHaloStroke: "#7cf0c4",
+    graticule: "rgba(124,240,196,0.05)",
+    equator: "rgba(124,240,196,0.22)",
+    nightFill: "#02030a",
+    nightFill2: "#1a2855",
+    vignette: "#000",
+    starOpacity: 1,
+    dotDayOuter: "#f5a04a",
+    dotDayInner: "#fff3c4",
+    dotNightOuter: "#3ec79a",
+    dotNightInner: "#d9fff0",
+    ringDay: "#ffcb6b",
+    ringNight: "#6ef3c1",
+    labelBg: "rgba(3,5,15,0.85)",
+    labelStroke: "rgba(255,255,255,0.18)",
+    labelActiveStroke: "#6ef3c1",
+    labelText: "#fff",
+    labelDayText: "#ffe9a8",
+    labelNightText: "#b8ffe3",
+    tooltipBg: "rgba(8,12,28,0.96)",
+    tooltipStroke: "#6ef3c1",
+    sunHaloColor: "#ffcb6b",
+    sunCoreColor: "#ffb067",
+    sunCenterColor: "#fff9e4",
+  };
+
   return (
     <svg className="map-svg" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
       <defs>
-        {/* Deep-space ocean with subtle warm hint */}
         <radialGradient id="oceanGrad" cx="50%" cy="45%" r="75%">
-          <stop offset="0" stopColor="#162044"/>
-          <stop offset="0.55" stopColor="#0a1230"/>
-          <stop offset="1" stopColor="#03050f"/>
+          <stop offset="0" stopColor={P.ocean1}/>
+          <stop offset="0.55" stopColor={P.ocean2}/>
+          <stop offset="1" stopColor={P.ocean3}/>
         </radialGradient>
 
-        {/* Land: soft emerald-to-indigo interior */}
         <linearGradient id="landFill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#1a3a4e" stopOpacity="0.85"/>
-          <stop offset="0.5" stopColor="#153244" stopOpacity="0.82"/>
-          <stop offset="1" stopColor="#0f2435" stopOpacity="0.8"/>
+          <stop offset="0" stopColor={P.landFill1} stopOpacity={isLight?"0.95":"0.85"}/>
+          <stop offset="1" stopColor={P.landFill2} stopOpacity={isLight?"0.9":"0.8"}/>
         </linearGradient>
 
-        {/* Land coastline glow */}
         <linearGradient id="coastStroke" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#7cf0c4"/>
-          <stop offset="1" stopColor="#6fb9ff"/>
+          <stop offset="0" stopColor={P.coastStroke1}/>
+          <stop offset="1" stopColor={P.coastStroke2}/>
         </linearGradient>
 
-        {/* Sun: warm, layered */}
         <radialGradient id="sunCore" cx="50%" cy="50%" r="50%">
           <stop offset="0" stopColor="#fff9e4"/>
           <stop offset="0.4" stopColor="#ffd98c"/>
@@ -121,54 +195,73 @@ function WorldMap({ cities=CITIES, nowMs, activeId, onSelect }){
           <stop offset="1" stopColor="#ffb067" stopOpacity="0"/>
         </radialGradient>
 
-        {/* City dot colors */}
         <radialGradient id="dotDay" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stopColor="#fff3c4"/>
+          <stop offset="0" stopColor={P.dotDayInner}/>
           <stop offset="0.6" stopColor="#ffcb6b"/>
-          <stop offset="1" stopColor="#f5a04a"/>
+          <stop offset="1" stopColor={P.dotDayOuter}/>
         </radialGradient>
         <radialGradient id="dotNight" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stopColor="#d9fff0"/>
-          <stop offset="0.6" stopColor="#6ef3c1"/>
-          <stop offset="1" stopColor="#3ec79a"/>
+          <stop offset="0" stopColor={P.dotNightInner}/>
+          <stop offset="0.6" stopColor={isLight?"#2ecf90":"#6ef3c1"}/>
+          <stop offset="1" stopColor={P.dotNightOuter}/>
         </radialGradient>
 
-        {/* Vignette mask for globe feel */}
         <radialGradient id="vignette" cx="50%" cy="50%" r="65%">
-          <stop offset="0.5" stopColor="#000" stopOpacity="0"/>
-          <stop offset="1" stopColor="#000" stopOpacity="0.55"/>
+          <stop offset="0.5" stopColor={P.vignette} stopOpacity="0"/>
+          <stop offset="1" stopColor={P.vignette} stopOpacity={isLight?"0.18":"0.55"}/>
         </radialGradient>
 
-        {/* Dot glow */}
+        {/* Light mode: subtle water shimmer */}
+        {isLight && (
+          <linearGradient id="waterShimmer" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#e8f4fc" stopOpacity="0.6"/>
+            <stop offset="1" stopColor="#b0cde8" stopOpacity="0.2"/>
+          </linearGradient>
+        )}
+
         <filter id="dotGlow" x="-100%" y="-100%" width="300%" height="300%">
           <feGaussianBlur stdDeviation="2.5"/>
           <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
 
-        {/* Subtle land elevation shadow */}
         <filter id="landDepth" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="1" stdDeviation="0.8" floodColor="#7cf0c4" floodOpacity="0.12"/>
+          <feDropShadow dx="0" dy="1" stdDeviation="0.8"
+            floodColor={isLight?"#4a8a5a":"#7cf0c4"}
+            floodOpacity={isLight?"0.18":"0.12"}/>
         </filter>
       </defs>
 
       {/* Ocean base */}
       <rect x="0" y="0" width={W} height={H} fill="url(#oceanGrad)"/>
+      {isLight && <rect x="0" y="0" width={W} height={H} fill="url(#waterShimmer)"/>}
 
-      {/* Starfield */}
-      <g>
-        {stars.map((s,i)=>(
-          <circle key={i} cx={s.x} cy={s.y} r={s.r} fill="#fff" opacity={s.o}>
-            {s.r > 0.8 && (
-              <animate attributeName="opacity"
-                values={`${s.o};${s.o*0.3};${s.o}`}
-                dur={`${3 + (i%4)}s`} repeatCount="indefinite"/>
-            )}
-          </circle>
-        ))}
-      </g>
+      {/* Starfield — dark mode only */}
+      {!isLight && (
+        <g>
+          {stars.map((s,i)=>(
+            <circle key={i} cx={s.x} cy={s.y} r={s.r} fill="#fff" opacity={s.o}>
+              {s.r > 0.8 && (
+                <animate attributeName="opacity"
+                  values={`${s.o};${s.o*0.3};${s.o}`}
+                  dur={`${3 + (i%4)}s`} repeatCount="indefinite"/>
+              )}
+            </circle>
+          ))}
+        </g>
+      )}
 
-      {/* Graticule: longitude every 30°, latitude every 20° — very subtle */}
-      <g stroke="rgba(124,240,196,0.05)" strokeWidth="0.5" fill="none">
+      {/* Light mode: gentle wave hint */}
+      {isLight && (
+        <g opacity="0.15">
+          {[80,160,240,320].map((y,i)=>(
+            <path key={i} d={`M0 ${y} Q${W/4} ${y-8} ${W/2} ${y} Q${3*W/4} ${y+8} ${W} ${y}`}
+              fill="none" stroke="#7ab8d8" strokeWidth="0.6"/>
+          ))}
+        </g>
+      )}
+
+      {/* Graticule */}
+      <g stroke={P.graticule} strokeWidth="0.5" fill="none">
         {[...Array(11)].map((_,i)=>{
           const x = (i+1)*(W/12);
           return <line key={"mer"+i} x1={x} y1="0" x2={x} y2={H}/>;
@@ -179,75 +272,79 @@ function WorldMap({ cities=CITIES, nowMs, activeId, onSelect }){
         })}
       </g>
 
-      {/* Equator — signature line */}
+      {/* Equator */}
       <line x1="0" y1={H/2} x2={W} y2={H/2}
-        stroke="rgba(124,240,196,0.22)" strokeWidth="0.8"
+        stroke={P.equator} strokeWidth="0.8"
         strokeDasharray="2 10"/>
 
-      {/* Countries — two-pass: outer glow halo + filled shape */}
+      {/* Tropics — light mode gets extra reference lines */}
+      {isLight && (
+        <>
+          <line x1="0" y1={proj(23.44,0)[1]} x2={W} y2={proj(23.44,0)[1]}
+            stroke="rgba(200,120,0,0.15)" strokeWidth="0.5" strokeDasharray="4 12"/>
+          <line x1="0" y1={proj(-23.44,0)[1]} x2={W} y2={proj(-23.44,0)[1]}
+            stroke="rgba(200,120,0,0.15)" strokeWidth="0.5" strokeDasharray="4 12"/>
+        </>
+      )}
+
+      {/* Countries */}
       {countryPaths.length>0 ? (
         <>
-          {/* Soft cyan halo around landmasses */}
-          <g opacity="0.35" filter="url(#landDepth)">
+          <g opacity={isLight?"0.5":"0.35"} filter="url(#landDepth)">
             {countryPaths.map((c,i)=>(
               <path key={"h"+i} d={c.d}
                 fill="none"
-                stroke="#7cf0c4"
-                strokeWidth="2.2"
-                strokeOpacity="0.18"
+                stroke={P.landHaloStroke}
+                strokeWidth={isLight?"1.8":"2.2"}
+                strokeOpacity={isLight?"0.25":"0.18"}
                 strokeLinejoin="round"/>
             ))}
           </g>
-          {/* Fill + crisp coastline */}
           <g>
             {countryPaths.map((c,i)=>(
               <path key={"c"+i} d={c.d}
                 fill="url(#landFill)"
                 stroke="url(#coastStroke)"
-                strokeWidth="0.7"
-                strokeOpacity="0.75"
+                strokeWidth={isLight?"0.9":"0.7"}
+                strokeOpacity={isLight?"0.85":"0.75"}
                 strokeLinejoin="round"/>
             ))}
           </g>
-          {/* Inner highlight — thin */}
-          <g opacity="0.4">
+          <g opacity={isLight?"0.5":"0.4"}>
             {countryPaths.map((c,i)=>(
               <path key={"i"+i} d={c.d}
                 fill="none"
-                stroke="#a8fcda"
+                stroke={isLight?"#8ad0a8":"#a8fcda"}
                 strokeWidth="0.3"
                 strokeLinejoin="round"/>
             ))}
           </g>
         </>
       ) : !err ? (
-        <text x={W/2} y={H/2} textAnchor="middle" fill="rgba(255,255,255,0.3)"
+        <text x={W/2} y={H/2} textAnchor="middle"
+          fill={isLight?"rgba(40,80,60,0.5)":"rgba(255,255,255,0.3)"}
           fontFamily="JetBrains Mono" fontSize="14">Loading geography…</text>
       ) : null}
 
-      {/* Night overlay — smoother, two-tone */}
-      <path d={nightPath} fill="#02030a" opacity="0.62"/>
-      <path d={nightPath} fill="#1a2855" opacity="0.2"/>
+      {/* Night overlay */}
+      <path d={nightPath} fill={P.nightFill} opacity={isLight?"0.35":"0.62"}/>
+      <path d={nightPath} fill={P.nightFill2} opacity={isLight?"0.2":"0.2"}/>
 
-      {/* Sun glow layers (behind dot) */}
+      {/* Sun glow */}
       <g transform={`translate(${sx},${sy})`}>
         <circle r="95" fill="url(#sunOuter)"/>
         <circle r="55" fill="url(#sunHalo)"/>
       </g>
-
-      {/* Subtle sun rays */}
-      <g transform={`translate(${sx},${sy})`} opacity="0.4">
+      <g transform={`translate(${sx},${sy})`} opacity={isLight?"0.55":"0.4"}>
         {[...Array(8)].map((_,i)=>{
           const a = (i/8)*Math.PI*2;
-          const r1 = 16, r2 = 32;
+          const r1=16, r2=32;
           return <line key={i}
             x1={Math.cos(a)*r1} y1={Math.sin(a)*r1}
             x2={Math.cos(a)*r2} y2={Math.sin(a)*r2}
             stroke="#ffcb6b" strokeWidth="1" strokeLinecap="round"/>;
         })}
       </g>
-
-      {/* Sun core */}
       <g transform={`translate(${sx},${sy})`}>
         <circle r="12" fill="url(#sunCore)"/>
         <circle r="5" fill="#fff9e4"/>
@@ -261,7 +358,7 @@ function WorldMap({ cities=CITIES, nowMs, activeId, onSelect }){
         const isActive = c.id === activeId;
         const isHover = c.id === hovered;
         const dotFill = isDay ? "url(#dotDay)" : "url(#dotNight)";
-        const ringColor = isDay ? "#ffcb6b" : "#6ef3c1";
+        const ringColor = isDay ? P.ringDay : P.ringNight;
 
         return (
           <g key={c.id} transform={`translate(${x},${y})`}
@@ -270,7 +367,6 @@ function WorldMap({ cities=CITIES, nowMs, activeId, onSelect }){
              onMouseLeave={()=>setHovered(null)}
              style={{ cursor: "pointer" }}>
 
-            {/* Pulse on active */}
             {isActive && (
               <>
                 <circle r="4" fill={ringColor} opacity="0.5">
@@ -284,48 +380,46 @@ function WorldMap({ cities=CITIES, nowMs, activeId, onSelect }){
               </>
             )}
 
-            {/* Ring around dot */}
             <circle r={isActive ? 8 : 6} fill="none"
               stroke={ringColor} strokeOpacity={isActive ? 0.55 : 0.3}
               strokeWidth="0.8"/>
 
-            {/* Dot */}
             <circle r={isActive ? 5 : 3.5}
               fill={dotFill}
-              stroke="#fff"
+              stroke={isLight?"rgba(255,255,255,0.95)":"#fff"}
               strokeOpacity="0.95"
               strokeWidth={isActive ? 1.2 : 0.6}
               filter="url(#dotGlow)"/>
 
-            {/* Label */}
             <g transform="translate(10, -11)">
               <rect x="-3" y="-10" width={c.id.length*10 + 14} height="18"
-                rx="4" fill="rgba(3,5,15,0.85)"
-                stroke={isActive ? ringColor : "rgba(255,255,255,0.18)"}
-                strokeOpacity={isActive ? 0.5 : 1}
-                strokeWidth="0.6"/>
+                rx="4" fill={P.labelBg}
+                stroke={isActive ? P.labelActiveStroke : P.labelStroke}
+                strokeOpacity={isActive ? 0.6 : 1}
+                strokeWidth="0.7"/>
               <text x="4" y="3"
                 fontFamily="JetBrains Mono, monospace"
                 fontSize="13"
                 fontWeight="700"
-                fill={isActive ? "#fff" : (isDay ? "#ffe9a8" : "#b8ffe3")}
+                fill={isActive ? (isLight?"#0a4a2a":P.labelText) : (isDay ? P.labelDayText : P.labelNightText)}
                 letterSpacing="0.8">
                 {c.id}
               </text>
             </g>
 
-            {/* Hover tooltip with local time */}
             {isHover && !isActive && (
               <g transform="translate(-64, 14)">
                 <rect x="0" y="0" width="128" height="34" rx="7"
-                  fill="rgba(8,12,28,0.96)"
-                  stroke={ringColor} strokeOpacity="0.45" strokeWidth="0.8"/>
+                  fill={P.tooltipBg}
+                  stroke={P.tooltipStroke} strokeOpacity="0.5" strokeWidth="0.8"/>
                 <text x="64" y="14" textAnchor="middle"
-                  fontFamily="Inter, sans-serif" fontSize="10.5" fontWeight="600" fill="#fff">
+                  fontFamily="Inter, sans-serif" fontSize="10.5" fontWeight="600"
+                  fill={isLight?"#1a2e2a":"#fff"}>
                   {c.name}
                 </text>
                 <text x="64" y="27" textAnchor="middle"
-                  fontFamily="JetBrains Mono, monospace" fontSize="9.5" fill={ringColor}>
+                  fontFamily="JetBrains Mono, monospace" fontSize="9.5"
+                  fill={ringColor}>
                   {formatTimeInTz(new Date(nowMs), c.tz, false, false)} · {isDay ? "DAY" : "NIGHT"}
                 </text>
               </g>
@@ -334,7 +428,7 @@ function WorldMap({ cities=CITIES, nowMs, activeId, onSelect }){
         );
       })}
 
-      {/* Vignette to sell the globe feeling */}
+      {/* Vignette */}
       <rect x="0" y="0" width={W} height={H} fill="url(#vignette)" pointerEvents="none"/>
     </svg>
   );

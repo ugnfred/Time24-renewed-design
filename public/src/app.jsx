@@ -35,6 +35,13 @@ function App(){
 
   const [tweaks, setTweaks] = React.useState(TWEAK_DEFAULTS);
   const [editMode, setEditMode] = React.useState(false);
+  const [settingsOpen, setSettingsOpen] = React.useState(false);
+  const [settings, setSettings] = React.useState(window.t24LoadSettings ? window.t24LoadSettings() : {});
+  React.useEffect(()=>{
+    const onChg = (e) => setSettings(e.detail);
+    window.addEventListener("t24-settings-changed", onChg);
+    return () => window.removeEventListener("t24-settings-changed", onChg);
+  },[]);
 
   // Apply tweaks to CSS vars
   React.useEffect(()=>{
@@ -95,7 +102,7 @@ function App(){
     developer:"Developer", guides:"Guides"
   };
 
-  const istNow = formatTimeInTz(now, "Asia/Kolkata", false, true);
+  const istNow = formatTimeInTz(now, "Asia/Kolkata", !window.__T24?.is24h, true);
 
   return (
     <div className="shell">
@@ -131,7 +138,7 @@ function App(){
             <span className="dot"/> IST · {istNow}
           </div>
           <div style={{fontSize:"11px", color:"var(--ink-4)", letterSpacing:"0.04em", lineHeight:1.5}}>
-            No ads, no sign-up, no tracking pixels. Your data lives on your device.
+            No signup. Tools work offline. We use Google Analytics & display ads to keep the site free.
           </div>
         </div>
       </aside>
@@ -143,6 +150,18 @@ function App(){
           </div>
           <div className="topbar-spacer"/>
           <div className="top-actions">
+            <button className="toggle" title="Personalize"
+              onClick={()=>setSettingsOpen(true)}
+              style={{
+                display:"inline-flex", alignItems:"center", gap:"6px",
+                padding:"8px 12px", borderRadius:"999px",
+                background:"rgba(255,255,255,0.05)",
+                border:"1px solid var(--stroke-2)",
+                color:"var(--ink-2)", cursor:"pointer", fontFamily:"var(--f-mono)",
+                fontSize:"11px", letterSpacing:"0.08em"
+              }}>
+              ⚙ Settings
+            </button>
             <button className="toggle" title="Press number keys to switch views"
               style={{
                 display:"inline-flex", alignItems:"center", gap:"8px",
@@ -188,8 +207,11 @@ function App(){
                 <h1>Field notes on <em>time.</em></h1>
                 <p>Long-form writing on timezones, clocks, calendars, and the small decisions we all make about when things happen.</p>
               </div>
+              {window.AdSlot && <AdSlot slot="1234567890" format="auto" height={120}/>}
               <GuidesRail/>
+              {window.AdSlot && <AdSlot slot="2345678901" format="auto" height={250}/>}
               <LongFormArticle/>
+              {window.AdSlot && <AdSlot slot="3456789012" format="auto" height={120}/>}
             </div>
           )}
 
@@ -238,6 +260,8 @@ function App(){
         <span><kbd>1–9</kbd>switch</span>
         <span><kbd>?</kbd>help</span>
       </div>
+
+      {window.SettingsPanel && <SettingsPanel open={settingsOpen} onClose={()=>setSettingsOpen(false)}/>}
 
       {editMode && (
         <div style={{

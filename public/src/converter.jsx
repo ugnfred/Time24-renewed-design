@@ -6,9 +6,10 @@ function Converter(){
   const [zones, setZones] = React.useState(["IST","NYC","LON","SIN","TYO"]);
   const [dayOffset, setDayOffset] = React.useState(0);
   const base = CITIES.find(c=>c.id===baseZone);
+  const baseOff = utcOffsetHours(base.tz, now);
 
-  // Convert baseHour (in base zone) to UTC
-  const utcHour = (baseHour - base.off + 24*3) % 24;
+  // Convert baseHour (in base zone) to UTC using live offset
+  const utcHour = (baseHour - baseOff + 24*3) % 24;
 
   const fmtHour = (h) => {
     const hh = Math.floor(h);
@@ -68,8 +69,9 @@ function Converter(){
         <div className="conv-zones">
           {zones.map(zid=>{
             const c = CITIES.find(x=>x.id===zid);
-            // local hour in this zone
-            const localH = (utcHour + c.off + 24*3) % 24;
+            const cOff = utcOffsetHours(c.tz, now);
+            // local hour in this zone using LIVE offset (handles DST)
+            const localH = (utcHour + cOff + 24*3) % 24;
             const hours = [...Array(24)].map((_,i)=>{
               const hr = (i);
               const isNow = Math.floor(localH)===hr;
@@ -95,7 +97,7 @@ function Converter(){
                   </div>
                 </div>
                 <div style={{display:"flex", alignItems:"center", gap:"10px"}}>
-                  <div className="t">{fmtHour(localH)}</div>
+                  <div className="t">{fmtHour(localH)} <span style={{fontSize:"11px", color:"var(--ink-4)"}}>UTC{cOff>=0?"+":""}{cOff}</span></div>
                   {zid!==baseZone && (
                     <button onClick={()=>setZones(zones.filter(z=>z!==zid))}
                       style={{background:"none", border:"none", color:"var(--ink-4)", cursor:"pointer", fontSize:"18px"}}>×</button>

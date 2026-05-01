@@ -12,6 +12,33 @@ function Alarm(){
 
   const [newTime, setNewTime] = React.useState("07:00");
   const [newLabel, setNewLabel] = React.useState("");
+  const [ringing, setRinging] = React.useState(null);
+  const lastFiredRef = React.useRef({});
+
+  // Watch for alarms to fire (every second when minute matches)
+  React.useEffect(()=>{
+    const dayCodes = ["Su","Mo","Tu","We","Th","Fr","Sa"];
+    const cur = pad(now.getHours())+":"+pad(now.getMinutes());
+    const today = dayCodes[now.getDay()];
+    const stamp = now.toDateString()+" "+cur;
+    alarms.forEach(a=>{
+      if(!a.on) return;
+      if(a.time !== cur) return;
+      if(a.days.length && !a.days.includes(today)) return;
+      if(lastFiredRef.current[a.id] === stamp) return;
+      lastFiredRef.current[a.id] = stamp;
+      setRinging(a);
+      playChime();
+      setTimeout(()=>playChime(), 1200);
+      setTimeout(()=>playChime(), 2400);
+      try{ if("Notification" in window && Notification.permission==="granted") new Notification("Time24 · Alarm", { body: a.label+" — "+a.time }); }catch(e){}
+    });
+  },[now, alarms]);
+
+  // Request notification permission once
+  React.useEffect(()=>{
+    try{ if("Notification" in window && Notification.permission==="default") Notification.requestPermission().catch(()=>{}); }catch(e){}
+  },[]);
 
   const add = () => {
     if(!newTime) return;
@@ -72,6 +99,24 @@ function Alarm(){
         <b style={{color:"var(--ink)", fontFamily:"var(--f-display)", fontSize:"15px"}}>A note on alarms in the browser.</b><br/>
         Browser alarms only ring while this tab is open. For critical wake-ups, rely on your phone's native alarm. These are best for in-workday reminders — stand up, drink water, leave for the meeting.
       </div>
+
+      {ringing && (
+        <div style={{position:"fixed", inset:0, background:"rgba(3,5,15,0.85)",
+          backdropFilter:"blur(20px)", zIndex:9999, display:"grid", placeItems:"center"}}>
+          <div className="glass" style={{padding:"50px 60px", textAlign:"center", maxWidth:"460px",
+            border:"1px solid rgba(110,243,193,0.4)", boxShadow:"0 0 60px rgba(110,243,193,0.3)"}}>
+            <div className="h-eyebrow" style={{color:"var(--accent)"}}>● Alarm ringing</div>
+            <div style={{fontFamily:"var(--f-display)", fontSize:"96px", letterSpacing:"-0.04em",
+              lineHeight:1, margin:"16px 0", fontVariantNumeric:"tabular-nums"}}>
+              {ringing.time}
+            </div>
+            <div style={{fontFamily:"var(--f-display)", fontSize:"24px", color:"var(--ink-2)", marginBottom:"30px"}}>
+              {ringing.label}
+            </div>
+            <button className="btn accent" onClick={()=>setRinging(null)}>Dismiss</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
