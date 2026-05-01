@@ -1,3 +1,65 @@
+/* ---------- Analog clock face ---------- */
+
+function AnalogClock({ hh, mm, ss, size = 160 }){
+  const h = parseInt(hh, 10);
+  const m = parseInt(mm, 10);
+  const s = parseInt(ss, 10);
+
+  const secDeg  = s * 6;
+  const minDeg  = m * 6 + s * 0.1;
+  const hourDeg = (h % 12) * 30 + m * 0.5;
+
+  const cx = size / 2;
+  const r  = size / 2 - 6;
+
+  const hand = (deg, len, width, color, glow) => {
+    const rad = (deg - 90) * Math.PI / 180;
+    return (
+      <line x1={cx} y1={cx}
+        x2={cx + Math.cos(rad) * len}
+        y2={cx + Math.sin(rad) * len}
+        stroke={color} strokeWidth={width} strokeLinecap="round"
+        style={glow ? { filter:`drop-shadow(0 0 5px ${color})` } : {}}/>
+    );
+  };
+
+  const markers = Array.from({ length: 12 }, (_, i) => {
+    const rad = (i * 30 - 90) * Math.PI / 180;
+    const major = i % 3 === 0;
+    const r1 = r - (major ? 12 : 7);
+    return (
+      <line key={i}
+        x1={cx + Math.cos(rad) * r1} y1={cx + Math.sin(rad) * r1}
+        x2={cx + Math.cos(rad) * r}  y2={cx + Math.sin(rad) * r}
+        stroke={major ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.2)"}
+        strokeWidth={major ? 2 : 1} strokeLinecap="round"/>
+    );
+  });
+
+  const tailRad = (secDeg - 90 + 180) * Math.PI / 180;
+
+  return (
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{flex:"0 0 auto"}}>
+      <circle cx={cx} cy={cx} r={r}
+        fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" strokeWidth="1"/>
+      <circle cx={cx} cy={cx} r={r - 3}
+        fill="none" stroke="rgba(110,243,193,0.07)" strokeWidth="8"/>
+      {markers}
+      {hand(hourDeg, r * 0.54, 3.5, "rgba(244,246,255,0.92)")}
+      {hand(minDeg,  r * 0.77, 2.5, "rgba(244,246,255,0.75)")}
+      {hand(secDeg,  r * 0.88, 1.5, "#6ef3c1", true)}
+      <line x1={cx} y1={cx}
+        x2={cx + Math.cos(tailRad) * r * 0.22}
+        y2={cx + Math.sin(tailRad) * r * 0.22}
+        stroke="#6ef3c1" strokeWidth="1.5" strokeLinecap="round"
+        style={{filter:"drop-shadow(0 0 4px #6ef3c1)"}}/>
+      <circle cx={cx} cy={cx} r="5" fill="#6ef3c1"
+        style={{filter:"drop-shadow(0 0 8px #6ef3c1)"}}/>
+      <circle cx={cx} cy={cx} r="2.5" fill="#070814"/>
+    </svg>
+  );
+}
+
 /* ---------- Clock view with dynamic data ---------- */
 
 function Clock(){
@@ -92,8 +154,11 @@ function Clock(){
             <span className="sec blink">:{ss}</span>
             {h12 && ap && <span className="ap">{ap}</span>}
           </div>
-          <div className="big-caption">
-            <span className="accent">{captionMood.a}</span> {captionMood.b}
+          <div style={{display:"flex", alignItems:"center", gap:"28px", marginTop:"18px"}}>
+            <AnalogClock hh={hh} mm={mm} ss={ss} size={160}/>
+            <div className="big-caption" style={{marginTop:0}}>
+              <span className="accent">{captionMood.a}</span> {captionMood.b}
+            </div>
           </div>
 
           <div className="stat-strip">
