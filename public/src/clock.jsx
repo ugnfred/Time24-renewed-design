@@ -149,16 +149,18 @@ function Clock(){
             <div className="hero-locale">{active.name} · {active.tz}</div>
             <div className="hero-date">{dStr}</div>
           </div>
-          <div className="big-time">
-            <span>{hh}:{mm}</span>
-            <span className="sec blink">:{ss}</span>
-            {h12 && ap && <span className="ap">{ap}</span>}
-          </div>
-          <div style={{display:"flex", alignItems:"center", gap:"28px", marginTop:"18px"}}>
-            <AnalogClock hh={hh} mm={mm} ss={ss} size={160}/>
-            <div className="big-caption" style={{marginTop:0}}>
-              <span className="accent">{captionMood.a}</span> {captionMood.b}
+          <div style={{display:"flex", alignItems:"center", gap:"40px", flex:1, marginTop:"12px"}}>
+            <div style={{flex:1, minWidth:0}}>
+              <div className="big-time">
+                <span>{hh}:{mm}</span>
+                <span className="sec blink">:{ss}</span>
+                {h12 && ap && <span className="ap">{ap}</span>}
+              </div>
+              <div className="big-caption">
+                <span className="accent">{captionMood.a}</span> {captionMood.b}
+              </div>
             </div>
+            <AnalogClock hh={hh} mm={mm} ss={ss} size={220}/>
           </div>
 
           <div className="stat-strip">
