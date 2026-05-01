@@ -394,9 +394,8 @@ a{ color: inherit }
 /* ---------------- Clock hero ---------------- */
 .clock-hero{
   display: grid;
-  grid-template-columns: 1.1fr 1.2fr;
+  grid-template-columns: 1fr;
   gap: 24px;
-  align-items: stretch;
 }
 .hero-card{ padding: 32px; display: flex; flex-direction: column }
 .hero-top{
@@ -1117,7 +1116,6 @@ input[type="range"]::-webkit-slider-thumb{
 
 /* Responsive */
 @media (max-width: 1100px){
-  .clock-hero{ grid-template-columns: 1fr; gap: 20px }
   .panel-hero{ grid-template-columns: 1fr }
   .formats{ grid-template-columns: 1fr }
   .foot{ grid-template-columns: 1fr 1fr }
