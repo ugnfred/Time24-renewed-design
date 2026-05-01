@@ -3,8 +3,9 @@
 function Clock(){
   const now = useTick(1000);
   const userLoc = useUserLocation();
-  const [activeCity, setActiveCity] = React.useState("IST");
-  const [h12, setH12] = React.useState(true);
+  const t24 = useT24Settings();
+  const [activeCity, setActiveCity] = React.useState(()=> t24.homeTz === "Asia/Kolkata" ? "IST" : (CITIES.find(c=>c.tz===t24.homeTz)?.id || "IST"));
+  const h12 = t24.h12;
   const [sunData, setSunData] = React.useState(null);
   const [copied, setCopied] = React.useState("");
 
@@ -154,9 +155,9 @@ function Clock(){
         <div className="glass city-col">
           <div className="city-col-head">
             <div className="h-eyebrow">Primary cities · live</div>
-            <button className="btn sm ghost" onClick={()=>setH12(v=>!v)}>
-              {h12?"12h":"24h"}
-            </button>
+            <div className="mono" style={{fontSize:"10.5px", color:"var(--ink-4)", letterSpacing:"0.1em"}}>
+              {h12?"12h":"24h"} · in Settings
+            </div>
           </div>
           {CITIES.slice(0,6).map(c=>{
             const hr = getHourInTz(now, c.tz);

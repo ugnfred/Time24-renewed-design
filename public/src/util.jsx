@@ -129,6 +129,30 @@ function moonName(p){
   return "Waning Crescent";
 }
 
+// Beep using Web Audio API
+function playBeep(freq=880, duration=0.6, type="sine"){
+  try{
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if(!Ctx) return;
+    const ctx = new Ctx();
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.type = type; o.frequency.value = freq;
+    g.gain.setValueAtTime(0, ctx.currentTime);
+    g.gain.linearRampToValueAtTime(0.25, ctx.currentTime + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+    o.connect(g).connect(ctx.destination);
+    o.start();
+    o.stop(ctx.currentTime + duration);
+    setTimeout(()=>ctx.close().catch(()=>{}), (duration+0.2)*1000);
+  }catch(e){}
+}
+function playChime(){
+  playBeep(880,0.5);
+  setTimeout(()=>playBeep(1175,0.6),250);
+  setTimeout(()=>playBeep(1568,0.9),550);
+}
+
 function useTick(intervalMs=1000){
   const [t,setT] = React.useState(()=>new Date());
   React.useEffect(()=>{
@@ -136,6 +160,30 @@ function useTick(intervalMs=1000){
     return ()=>clearInterval(id);
   },[intervalMs]);
   return t;
+}
+
+// Subscribe components to global Time24 settings
+function useT24Settings(){
+  const get = () => (window.__T24 && window.__T24.settings) ||
+    (window.t24LoadSettings ? window.t24LoadSettings() : {});
+  const [s, setS] = React.useState(get);
+  React.useEffect(()=>{
+    const onChg = (e) => setS(e.detail || get());
+    window.addEventListener("t24-settings-changed", onChg);
+    return () => window.removeEventListener("t24-settings-changed", onChg);
+  },[]);
+  const is24h = s.timeFormat === "24";
+  const homeTz = s.homeTimezone === "auto"
+    ? (Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC")
+    : (s.homeTimezone || "UTC");
+  return {
+    settings: s,
+    is24h, h12: !is24h,
+    showSeconds: s.showSeconds !== false,
+    homeTz,
+    weekStart: parseInt(s.weekStart,10)||0,
+    name: s.greetingByName || ""
+  };
 }
 
 // Detect user's timezone via browser API (dynamic, no hardcoding)
@@ -173,5 +221,7 @@ function useUserLocation(){
 Object.assign(window, {
   CITIES, utcOffsetHours, formatTimeInTz, formatDateInTz, getHourInTz,
   getDayOfYear, getWeekNumber, yearProgress, pad,
-  sunTimes, hoursToHM, hoursToLocal, moonPhase, moonName, useTick, useUserLocation
+  sunTimes, hoursToHM, hoursToLocal, moonPhase, moonName, useTick, useUserLocation,
+  useT24Settings,
+  playBeep, playChime
 });
